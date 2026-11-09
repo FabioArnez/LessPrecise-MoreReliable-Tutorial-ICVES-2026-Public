@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Less Precise, More Reliable · IEEE ICVES 2026 Tutorial</title>
+  <meta name="description" content="Tutorial at IEEE ICVES 2026 (9 November 2026, Cochabamba): quantization for efficient and robust road-scene perception. Slides, lecture notes and a hands-on Colab notebook.">
+  <meta name="author" content="Fabio Arnez">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://fabioarnez.github.io/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Less Precise, More Reliable · IEEE ICVES 2026 Tutorial">
+  <meta property="og:description" content="Quantization for efficient and robust road-scene perception. Slides, lecture notes and a hands-on Colab notebook.">
+  <meta property="og:url" content="https://fabioarnez.github.io/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/">
+  <meta property="og:image" content="https://fabioarnez.github.io/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/assets/img/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <script>
+    // Apply a stored theme before the first paint, so the page does not flash.
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || t === "light") { document.documentElement.setAttribute("data-theme", t); }
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top">Less Precise, <span>More Reliable</span></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#overview">Overview</a>
+        <a href="#materials">Materials</a>
+        <a href="#program">Program</a>
+        <a href="#ideas">Key ideas</a>
+        <a href="#papers">Papers</a>
+        <a href="#cite">Cite</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap" id="top">
+
+      <!-- ===================== Hero ===================== -->
+      <div class="hero">
+        <span class="pill">IEEE ICVES 2026 · Tutorial</span>
+        <h1>Less Precise, More Reliable</h1>
+        <p class="subtitle">Quantization for Efficient and Robust Road-Scene Perception</p>
+        <p class="meta">9 November 2026 · Cochabamba, Bolivia · <a href="https://ieee-itss.org/conf/icves">IEEE International Conference on Vehicular Electronics and Safety</a></p>
+        <div class="people">
+          <div class="name">Fabio Arnez</div>
+          <div class="affil">Université Paris-Saclay, CEA, List</div>
+          <div class="collab">Built in collaboration with Aymen Bouguerra, PhD student at Université Paris-Saclay, CEA, List.</div>
+        </div>
+
+        <div class="buttons">
+          <a class="btn" href="https://github.com/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+            Repository
+          </a>
+          <a class="btn" href="slides/LessPrecise-MoreReliable_ICVES2026_slides.pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9.5h6M7 12.5h9"/></svg>
+            Slides (PDF)
+          </a>
+          <a class="btn" href="lecture-notes/LessPrecise-MoreReliable_ICVES2026_lecture-notes.pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5.5C4.5 4 7.5 4 12 6c4.5-2 7.5-2 10-.5V19c-2.5-1.5-5.5-1.5-10 .5-4.5-2-7.5-2-10-.5z"/><path d="M12 6v13.5"/></svg>
+            Lecture notes (PDF)
+          </a>
+          <a class="btn primary" href="https://colab.research.google.com/github/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/blob/main/notebook/Quantization_Corruption_Robustness_Tutorial.ipynb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></svg>
+            Notebook in Colab
+          </a>
+        </div>
+        <p class="sublinks">
+          Notebook also on
+          <a href="https://nbviewer.org/github/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/blob/main/notebook/Quantization_Corruption_Robustness_Tutorial.ipynb">nbviewer</a>
+          <span class="sep">·</span>
+          <a href="https://github.com/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/blob/main/notebook/Quantization_Corruption_Robustness_Tutorial.ipynb">GitHub</a>
+          <span class="sep">·</span>
+          <a href="notebook/Quantization_Corruption_Robustness_Tutorial.ipynb" download>Download .ipynb</a>
+        </p>
+      </div>
+
+      <figure class="teaser">
+        <img src="assets/img/slides-grid.png" width="2163" height="836"
+             alt="Six slides of the theory session: the title slide, one INT8 dot product, noise against signal per rank index, blur as a low-pass filter, the VLM study's landscape of runs, and the road-scene classifier's gain inside a window of blur severities.">
+        <figcaption>From the theory session. The integer kernel, rounding noise against a feature spectrum, blur as a low-pass filter, the large-scale VLM study, and the road-scene classifier's gain inside a window of blur severities.</figcaption>
+      </figure>
+
+      <!-- ===================== Overview ===================== -->
+      <section id="overview" class="lead">
+        <p class="eyebrow">Overview</p>
+        <h2>Can a less precise model be a more reliable one?</h2>
+        <p>A camera-based perception model in a vehicle has to stay accurate when the image degrades, and it has to run on small, cheap, low-power hardware. <strong>Low-bit quantization</strong> answers the second demand and is widely assumed to cost the first. This tutorial teaches, from first principles, what you need to read two recent studies that question that assumption.</p>
+        <p>The first half builds the toolkit. It covers number formats and the integer kernel, the uniform quantizer and its errors, rounding error as noise, post-training quantization (PTQ) and quantization-aware training (QAT), the spectrum of a representation, blur as a low-pass filter, perception models, and the statistics needed for fair comparisons. It then reads a large-scale study of quantized vision-language models and a matched-budget study of road-scene perception under blur.</p>
+        <p>The second half is hands-on. A notebook builds the same idea with code and animations, then tests it on a DINOv2 vision transformer with road-object crops from the DAWN adverse-weather dataset.</p>
+        <p class="callout">The reading is calibrated. Under moderate blur, an 8-bit classifier trained through its quantizer was more accurate than its full-precision counterpart, but only inside a window of severities, and not every reliability measure improves. Quantization noise and blur act on the same weak feature directions, yet noise of the same size does not reproduce the gain, so what in the quantizer does the work is still an open question.</p>
+      </section>
+
+      <!-- ===================== Materials ===================== -->
+      <section id="materials">
+        <p class="eyebrow">Materials</p>
+        <h2>Slides, lecture notes, and notebook</h2>
+        <div class="grid three">
+          <article class="card">
+            <a class="thumb" href="slides/LessPrecise-MoreReliable_ICVES2026_slides.pdf" aria-label="Open the slides (PDF)">
+              <img src="assets/img/slides-title.png" width="960" height="540" alt="Title slide of the tutorial deck." loading="lazy">
+            </a>
+            <div class="body">
+              <h3>Slides</h3>
+              <p>The deck of the theory session, about 90 slides in two parts, without the backup slides. Every number from the papers carries its locator.</p>
+              <ul class="facts">
+                <li>PDF, LaTeX Beamer</li>
+                <li>CC BY 4.0</li>
+              </ul>
+              <div class="actions">
+                <a class="chip accent" href="slides/LessPrecise-MoreReliable_ICVES2026_slides.pdf">Open PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb" href="lecture-notes/LessPrecise-MoreReliable_ICVES2026_lecture-notes.pdf" aria-label="Open the lecture notes (PDF)">
+              <img src="assets/img/notes-cover.png" width="700" height="990" alt="Title page of the lecture notes." loading="lazy">
+            </a>
+            <div class="body">
+              <h3>Lecture notes</h3>
+              <p>The written companion, about 180 pages. Part I builds the toolkit, Part II reads both studies result by result, with exercises and worked examples.</p>
+              <ul class="facts">
+                <li>PDF</li>
+                <li>CC BY 4.0</li>
+              </ul>
+              <div class="actions">
+                <a class="chip accent" href="lecture-notes/LessPrecise-MoreReliable_ICVES2026_lecture-notes.pdf">Open PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb contain" href="https://colab.research.google.com/github/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/blob/main/notebook/Quantization_Corruption_Robustness_Tutorial.ipynb" aria-label="Open the notebook in Colab">
+              <picture>
+                <source srcset="assets/img/notebook-noise-floor.png" media="(prefers-reduced-motion: reduce)">
+                <img src="assets/img/notebook-noise-floor.gif" width="900" height="420" alt="Notebook animation. As the bit width drops from 8 to 3, more feature ranks fall below the rounding-noise floor." loading="lazy">
+              </picture>
+            </a>
+            <div class="body">
+              <h3>Hands-on notebook</h3>
+              <p>Code and animations for the second half. Parts 1 to 4 run on a laptop CPU in seconds. Part 5 needs a GPU and takes about 10 to 12 minutes on a Colab T4.</p>
+              <ul class="facts">
+                <li>Jupyter, PyTorch, timm</li>
+                <li>MIT License</li>
+              </ul>
+              <div class="actions">
+                <a class="chip accent" href="https://colab.research.google.com/github/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/blob/main/notebook/Quantization_Corruption_Robustness_Tutorial.ipynb">Open in Colab</a>
+                <a class="chip" href="https://nbviewer.org/github/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/blob/main/notebook/Quantization_Corruption_Robustness_Tutorial.ipynb">nbviewer</a>
+                <a class="chip" href="notebook/Quantization_Corruption_Robustness_Tutorial.ipynb" download>.ipynb</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================== Program ===================== -->
+      <section id="program">
+        <p class="eyebrow">Program</p>
+        <h2>Three hours, theory then practice</h2>
+        <div class="grid two">
+          <div class="session">
+            <div class="when">Theory session · about 1.5 h</div>
+            <h3>From rounding noise to the feature spectrum</h3>
+            <ol>
+              <li>Opening, perception in the vehicle and its two demands</li>
+              <li>Part I, Foundations
+                <ul>
+                  <li>Numbers and the integer kernel</li>
+                  <li>The uniform quantizer, and rounding error as noise</li>
+                  <li>PTQ and QAT in a network</li>
+                  <li>Features and their spectrum</li>
+                  <li>Images, blur, and frequency</li>
+                  <li>Perception models, reliability, and fair comparisons</li>
+                </ul>
+              </li>
+              <li>Part II, The papers
+                <ul>
+                  <li>The question</li>
+                  <li>The VLM study, quantized vision-language models at scale</li>
+                  <li>The road-scene study and its classifier</li>
+                  <li>What it means for automotive perception</li>
+                </ul>
+              </li>
+              <li>Questions, then a live demo</li>
+            </ol>
+          </div>
+          <div class="session">
+            <div class="when">Hands-on session · about 1.5 h</div>
+            <h3>The same idea, in code</h3>
+            <ol start="0">
+              <li>Setup and the talk clips<span class="tag">CPU</span></li>
+              <li>What quantization does to a model, one step at a time: FP32, naive 3-bit, PTQ, QAT<span class="tag">CPU</span></li>
+              <li>The same rounding noise on a strong and a weak feature<span class="tag">CPU</span></li>
+              <li>A spectrum of features against one flat noise floor<span class="tag">CPU</span></li>
+              <li>Images, a general cue against a specialized cue under quantization, blur and noise<span class="tag">CPU</span></li>
+              <li>DINOv2 ViT-S/14 on DAWN road-object crops, W8A8 PTQ and QAT under Gaussian blur<span class="tag gpu">GPU</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Key ideas ===================== -->
+      <section id="ideas">
+        <p class="eyebrow">Key ideas</p>
+        <h2>Four figures from the lecture notes</h2>
+        <div class="grid two">
+          <figure class="fig">
+            <div class="frame"><img src="assets/img/fig-quantizer-staircase.png" width="1471" height="784" alt="The 3-bit uniform quantizer as a staircase, with its rounding error inside the clip range and clipping error outside it." loading="lazy"></div>
+            <figcaption>The 3-bit uniform quantizer and its error. Inside the clip range the rounding error stays within half a step. Outside it, clipping error grows without bound.</figcaption>
+          </figure>
+          <figure class="fig">
+            <div class="frame"><img src="assets/img/fig-noise-floor.png" width="1471" height="512" alt="A power-law feature spectrum against flat rounding-noise floors for 4, 6 and 8 bits." loading="lazy"></div>
+            <figcaption>A flat rounding-noise floor over a power-law feature spectrum. Each bit removed raises the floor by about 6 dB, and more rank directions fall below it.</figcaption>
+          </figure>
+          <figure class="fig">
+            <div class="frame"><img src="assets/img/fig-ptq-qat-pipeline.png" width="1471" height="828" alt="Pipeline diagram of post-training quantization and quantization-aware training." loading="lazy"></div>
+            <figcaption>PTQ calibrates the quantizer ranges on a small data set after training. QAT keeps training with the quantizer in the forward pass and a straight-through estimator in the backward pass.</figcaption>
+          </figure>
+          <figure class="fig">
+            <div class="frame"><img src="assets/img/fig-severity-window.png" width="1471" height="496" alt="Schematic of an accuracy gain that appears in a window of corruption severities and reverses at heavy corruption." loading="lazy"></div>
+            <figcaption>A severity window, drawn as a schematic. A gain under moderate corruption can reverse once the input is too degraded to read.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===================== Papers ===================== -->
+      <section id="papers">
+        <p class="eyebrow">Papers</p>
+        <h2>The two studies the tutorial reads</h2>
+        <div class="grid two">
+          <article class="card paper">
+            <div class="body">
+              <span class="venue">The VLM study · ICML 2026</span>
+              <h3>Less Precise Can Be More Reliable: A Systematic Evaluation of Quantization's Impact on VLMs Beyond Accuracy</h3>
+              <p>A large-scale study of quantized vision-language models, roughly 700,000 evaluation runs judged beyond accuracy, with a spectral account of when quantization helps.</p>
+              <p class="ref">Bouguerra, A., Montoya, D., Gomez-Villa, A., Mraidha, C., &amp; Arnez, F. (2026). In <em>Proceedings of the 43rd International Conference on Machine Learning</em> (Vol. 306). PMLR.</p>
+              <div class="actions">
+                <a class="chip" href="https://proceedings.mlr.press/v306/bouguerra26a.html">PMLR</a>
+                <a class="chip" href="https://arxiv.org/abs/2509.21173">arXiv</a>
+                <a class="chip" href="https://github.com/CEA-LIST/less-precise-more-reliable-vlms">Code</a>
+                <a class="chip" href="https://aymenbouguerra.github.io/Less-Precise-Can-Be-More-Reliable/">Project page</a>
+              </div>
+            </div>
+          </article>
+          <article class="card paper">
+            <div class="body">
+              <span class="venue">The road-scene study · ICVES 2026</span>
+              <h3>Quantization and Corruption Robustness in Deployed Road-Scene Perception</h3>
+              <p>A matched-budget testbed on DAWN adverse-weather images. A detector and a classifier in FP32, W8A8 PTQ and W8A8 QAT, trained on clean images, with blur applied only at evaluation.</p>
+              <p class="ref">Bouguerra, A., Radermacher, A., Arnez, F., &amp; Mraidha, C. (2026). In <em>Proceedings of the 2026 IEEE International Conference on Vehicular Electronics and Safety (ICVES)</em>. IEEE. To appear.</p>
+              <div class="actions">
+                <a class="chip" href="https://aymenbouguerra.github.io/Quantization-and-Corruption-Robustness-in-Deployed-Road-Scene-Perception/">Project page</a>
+                <a class="chip" href="https://github.com/CEA-LIST/Quantization-and-Corruption-Robustness-in-Deployed-Road-Scene-Perception">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===================== Cite ===================== -->
+      <section id="cite">
+        <p class="eyebrow">Cite</p>
+        <h2>Citing the tutorial</h2>
+        <p class="caption" style="text-align:left;margin:0 0 14px;max-width:none">If you use the material, please cite the tutorial, and the two studies for their results.</p>
+        <div class="bibtex">
+          <button class="copy-btn" id="copy-bibtex" type="button">Copy</button>
+<pre><code id="bibtex-text">@misc{arnez2026lessprecise,
+  author       = {Arnez, Fabio},
+  title        = {Less Precise, More Reliable: Quantization for Efficient
+                  and Robust Road-Scene Perception},
+  howpublished = {Tutorial at the IEEE International Conference on
+                  Vehicular Electronics and Safety (ICVES)},
+  address      = {Cochabamba, Bolivia},
+  month        = nov,
+  year         = {2026},
+  url          = {https://fabioarnez.github.io/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/}
+}</code></pre>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© 2026 Fabio Arnez · Université Paris-Saclay, CEA, List · <a href="mailto:fabio.arnez@cea.fr">fabio.arnez@cea.fr</a></p>
+      <p>Slides and lecture notes under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, except the CEA logos and template and the figures reproduced from the papers. Notebook code by Aymen Bouguerra and Fabio Arnez under the MIT License. DAWN images CC BY-NC 3.0, DINOv2 weights Apache 2.0.</p>
+      <p><a href="https://github.com/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public">Source of this page</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

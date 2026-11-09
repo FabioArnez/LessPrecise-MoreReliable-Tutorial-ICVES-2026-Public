@@ -1,0 +1,11 @@
+# OS and editor
+.DS_Store
+# Jupyter and Python
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+# the talk clips the notebook downloads next to itself when run locally
+media/
+media.zip
+notebook/media/
+notebook/media.zip

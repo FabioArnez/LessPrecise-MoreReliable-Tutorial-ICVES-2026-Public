@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+message: "If you use this material, please cite the tutorial as below, and the two studies for their results."
+type: software
+title: "Less Precise, More Reliable: Quantization for Efficient and Robust Road-Scene Perception"
+abstract: >-
+  Material of a three-hour tutorial at the 2026 IEEE International Conference on Vehicular
+  Electronics and Safety (ICVES), 9 November 2026, Cochabamba, Bolivia: slides, lecture notes
+  and a hands-on notebook on quantization for efficient and robust road-scene perception.
+authors:
+  - family-names: Arnez
+    given-names: Fabio
+    affiliation: "Université Paris-Saclay, CEA, List"
+    email: fabio.arnez@cea.fr
+version: "1.0"
+date-released: 2026-11-09
+url: "https://fabioarnez.github.io/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/"
+repository-code: "https://github.com/FabioArnez/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public"
+license:
+  - CC-BY-4.0
+  - MIT
+keywords:
+  - quantization
+  - post-training quantization
+  - quantization-aware training
+  - robustness
+  - road-scene perception
+  - tutorial
+references:
+  - type: conference-paper
+    title: "Less Precise Can Be More Reliable: A Systematic Evaluation of Quantization's Impact on VLMs Beyond Accuracy"
+    authors:
+      - family-names: Bouguerra
+        given-names: Aymen
+      - family-names: Montoya
+        given-names: Daniel
+      - family-names: Gomez-Villa
+        given-names: Alexandra
+      - family-names: Mraidha
+        given-names: Chokri
+      - family-names: Arnez
+        given-names: Fabio
+    collection-title: "Proceedings of the 43rd International Conference on Machine Learning"
+    volume: 306
+    publisher:
+      name: PMLR
+    year: 2026
+    url: "https://proceedings.mlr.press/v306/bouguerra26a.html"
+  - type: conference-paper
+    title: "Quantization and Corruption Robustness in Deployed Road-Scene Perception"
+    authors:
+      - family-names: Bouguerra
+        given-names: Aymen
+      - family-names: Radermacher
+        given-names: Ansgar
+      - family-names: Arnez
+        given-names: Fabio
+      - family-names: Mraidha
+        given-names: Chokri
+    collection-title: "Proceedings of the 2026 IEEE International Conference on Vehicular Electronics and Safety (ICVES)"
+    publisher:
+      name: IEEE
+    year: 2026
+    status: in-press
