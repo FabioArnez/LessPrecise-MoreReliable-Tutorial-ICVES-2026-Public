@@ -96,7 +96,9 @@ The tutorial reads two studies by the same group.
 
 ## Citation
 
-If you use the material, please cite the tutorial, and the two studies for their results. GitHub's *Cite this repository* button reads [CITATION.cff](CITATION.cff).
+If you use the material, please cite the tutorial. For the results, please cite the two studies. GitHub's *Cite this repository* button reads [CITATION.cff](CITATION.cff).
+
+**The tutorial**
 
 ```bibtex
 @misc{arnez2026lessprecise,
@@ -109,6 +111,36 @@ If you use the material, please cite the tutorial, and the two studies for their
   month        = nov,
   year         = {2026},
   url          = {https://fabioarnez.github.io/LessPrecise-MoreReliable-Tutorial-ICVES-2026-Public/}
+}
+```
+
+**The VLM study** (ICML 2026, [PMLR](https://proceedings.mlr.press/v306/bouguerra26a.html))
+
+```bibtex
+@inproceedings{bouguerra26a,
+  title     = {Less Precise Can Be More Reliable: A Systematic Evaluation
+               of Quantization's Impact on {VLMs} Beyond Accuracy},
+  author    = {Bouguerra, Aymen and Montoya Vasquez, Daniel Alfonso and Gomez-Villa, Alexandra
+               and Mraidha, Chokri and Arnez, Fabio},
+  booktitle = {Proceedings of the 43rd International Conference on Machine Learning},
+  pages     = {9363--9391},
+  year      = {2026},
+  volume    = {306},
+  series    = {Proceedings of Machine Learning Research},
+  publisher = {PMLR},
+  url       = {https://proceedings.mlr.press/v306/bouguerra26a.html}
+}
+```
+
+**The road-scene study** (ICVES 2026, to appear)
+
+```bibtex
+@inproceedings{bouguerra2026perception,
+  title     = {Quantization and Corruption Robustness in Deployed Road-Scene Perception},
+  author    = {Bouguerra, Aymen and Radermacher, Ansgar and Arnez, Fabio and Mraidha, Chokri},
+  booktitle = {IEEE International Conference on Vehicular Electronics and Safety (ICVES)},
+  address   = {Cochabamba, Bolivia},
+  year      = {2026}
 }
 ```
 
